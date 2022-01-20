@@ -16,6 +16,10 @@ namespace OOP_lesson2
     public class BankAccount
     {
         /// <summary>
+        /// Номер счета (счетчик)
+        /// </summary>
+        static private long _AccountNumberCount;
+        /// <summary>
         /// Номер счета
         /// </summary>
         private long _AccountNumber;
@@ -28,17 +32,34 @@ namespace OOP_lesson2
         /// </summary>
         private TypesOfBankAccount _TypeOfBankAccount;
 
+        static private long GetAccountNumber()
+        {
+            return _AccountNumberCount += 1;
+        }
+        public BankAccount(double Balance)
+        {
+            _AccountNumber = GetAccountNumber();
+            _Balance = Balance;
+            _TypeOfBankAccount = default;
+        }
+        public BankAccount(TypesOfBankAccount TypeOfBankAccount)
+        {
+            _AccountNumber = GetAccountNumber();
+            _Balance = default;
+            _TypeOfBankAccount = TypeOfBankAccount;
+        }
+        public BankAccount(double Balance, TypesOfBankAccount TypeOfBankAccount)
+        {
+            _AccountNumber = GetAccountNumber();
+            _Balance = Balance;
+            _TypeOfBankAccount = TypeOfBankAccount;
+        }
+
         public long AccountNumber
         {
             get { return _AccountNumber; }
-            set
-            {
-                if(value < 0)
-                    throw new ArgumentOutOfRangeException(nameof(value), value, "Значение номера счета не может быть меньше нуля!");
-                _AccountNumber = value;
-            }
         }
-        public double Balance { get => _Balance; set => _Balance = value; }
-        public TypesOfBankAccount TypeOfBankAccount { get => _TypeOfBankAccount; set => _TypeOfBankAccount = value; }  
+        public double Balance { get => _Balance;}
+        public TypesOfBankAccount TypeOfBankAccount { get => _TypeOfBankAccount;}
     }
 }
