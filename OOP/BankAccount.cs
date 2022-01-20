@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace OOP_lesson2
 {
@@ -10,6 +11,7 @@ namespace OOP_lesson2
     /// Тип банковского счета (перечислимый тип)
     /// </summary>
     public enum TypesOfBankAccount { Debit, Credit };
+    [Serializable]
     /// <summary>
     /// счет в банке
     /// </summary>
@@ -39,6 +41,7 @@ namespace OOP_lesson2
         {
             return _AccountNumberCount += 1;
         }
+        public BankAccount() { }
         public BankAccount(double Balance)
         {
             _AccountNumber = GetAccountNumberPlusOne();
@@ -57,14 +60,27 @@ namespace OOP_lesson2
             _Balance = Balance;
             _TypeOfBankAccount = TypeOfBankAccount;
         }
-        
+        //[XmlElement("AccountNumber")]
         public long AccountNumber
         {
             get { return _AccountNumber; }
+            set { }
         }
-        public double Balance { get => _Balance;}
-        public TypesOfBankAccount TypeOfBankAccount { get => _TypeOfBankAccount;}
+        //[XmlAttribute("Balance")]
+        public double Balance { get => _Balance; set { } }
+        //[XmlAttribute("TypeOfBankAccount")]
+        public TypesOfBankAccount TypeOfBankAccount { get => _TypeOfBankAccount; set { } }
 
+        public void DepositSum(double sum)
+        {
+            _Balance += sum;
+        }
+
+        public void TakeOutSum(double sum)
+        {
+            if (_Balance >= sum) _Balance -= sum;
+            throw new ArgumentOutOfRangeException(nameof(_Balance), _Balance, "Нельзя снять сумму, которая больше, чем средств на счете.");
+        }
         //Методы для заполнения и чтения (задание 1)
         //public long GetAccountNumber()
         //{
