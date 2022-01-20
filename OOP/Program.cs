@@ -21,7 +21,7 @@ namespace OOP_lesson2
 
             //Console.WriteLine($"Номер счета: {bankAccount.AccountNumber}    Баланс: {bankAccount.Balance}   Тип банковского счета: {GetTypeBankAccount(bankAccount.TypeOfBankAccount)}");
 
-            //Задание 2
+            //Задание 3
 
             BankAccount bankAccountA = new BankAccount(100000, TypesOfBankAccount.Credit);
             BankAccount bankAccountB = new BankAccount(TypesOfBankAccount.Debit);

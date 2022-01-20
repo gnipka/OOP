@@ -31,35 +31,64 @@ namespace OOP_lesson2
         /// Тип банковского счета (переменная)
         /// </summary>
         private TypesOfBankAccount _TypeOfBankAccount;
-
-        static private long GetAccountNumber()
+        /// <summary>
+        /// Генерирует номер банковского счета
+        /// </summary>
+        /// <returns></returns>
+        static private long GetAccountNumberPlusOne()
         {
             return _AccountNumberCount += 1;
         }
         public BankAccount(double Balance)
         {
-            _AccountNumber = GetAccountNumber();
+            _AccountNumber = GetAccountNumberPlusOne();
             _Balance = Balance;
             _TypeOfBankAccount = default;
         }
         public BankAccount(TypesOfBankAccount TypeOfBankAccount)
         {
-            _AccountNumber = GetAccountNumber();
+            _AccountNumber = GetAccountNumberPlusOne();
             _Balance = default;
             _TypeOfBankAccount = TypeOfBankAccount;
         }
         public BankAccount(double Balance, TypesOfBankAccount TypeOfBankAccount)
         {
-            _AccountNumber = GetAccountNumber();
+            _AccountNumber = GetAccountNumberPlusOne();
             _Balance = Balance;
             _TypeOfBankAccount = TypeOfBankAccount;
         }
-
+        
         public long AccountNumber
         {
             get { return _AccountNumber; }
         }
         public double Balance { get => _Balance;}
         public TypesOfBankAccount TypeOfBankAccount { get => _TypeOfBankAccount;}
+
+        //Методы для заполнения и чтения (задание 1)
+        //public long GetAccountNumber()
+        //{
+        //   return _AccountNumber;
+        //}
+        //public void SetAccountNumber(long value)
+        //{
+        //    _AccountNumber = value;
+        //}
+        //public double GetBalance()
+        //{
+        //    return _Balance;
+        //}
+        //public void SetBalance(double value)
+        //{
+        //    _Balance = value;
+        //}
+        //public TypesOfBankAccount GetTypeOfBankAccount()
+        //{
+        //    return _TypeOfBankAccount;
+        //}
+        //public void SetTypeOfBankAccount(TypesOfBankAccount value)
+        //{
+        //    _TypeOfBankAccount = value;
+        //}
     }
 }
