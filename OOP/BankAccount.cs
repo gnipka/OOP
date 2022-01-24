@@ -81,6 +81,16 @@ namespace OOP_lesson2
             if (_Balance >= sum) _Balance -= sum;
             throw new ArgumentOutOfRangeException(nameof(_Balance), _Balance, "Нельзя снять сумму, которая больше, чем средств на счете.");
         }
+        /// <summary>
+        /// Перевод денег с одного счета на другой
+        /// </summary>
+        /// <param name="bankAccountA"></param>
+        /// <param name="bankAccountB"></param>
+        public void MoneyTransfer(BankAccount bankAccountA, BankAccount bankAccountB )
+        {
+            bankAccountB.Balance += bankAccountA.Balance;
+            bankAccountA.Balance = 0;
+        }
         //Методы для заполнения и чтения (задание 1)
         //public long GetAccountNumber()
         //{
