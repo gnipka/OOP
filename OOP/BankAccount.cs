@@ -59,6 +59,12 @@ namespace OOP_lesson2
             _Balance = Balance;
             _TypeOfBankAccount = TypeOfBankAccount;
         }
+        public BankAccount(int AccountNumber, double Balance, TypesOfBankAccount TypeOfBankAccount)
+        {
+            _AccountNumber = AccountNumber;
+            _Balance = Balance;
+            _TypeOfBankAccount = TypeOfBankAccount;
+        }
 
         public double Balance { get => _Balance; set => _Balance = value; }
         public TypesOfBankAccount TypeOfBankAccount { get => _TypeOfBankAccount; set => _TypeOfBankAccount = value; }
