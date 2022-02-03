@@ -93,6 +93,10 @@ namespace OOP_lesson2
             return otherBankAccount.AccountNumber == AccountNumber;
 
         }
-        public override string ToString() => "";
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(AccountNumber, TypeOfBankAccount, Balance);
+        }
+        public override string ToString() => $"[{AccountNumber}] {TypeOfBankAccount} - {Balance:0.0#}";
     }
 }

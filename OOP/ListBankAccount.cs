@@ -9,7 +9,7 @@ namespace OOP_lesson2
 {
     public class ListBankAccount
     {
-        public List<BankAccount> BankAccounts { get; set; }
+        public HashSet<BankAccount> BankAccounts { get; set; }
         public ListBankAccount() { }
     }
 }

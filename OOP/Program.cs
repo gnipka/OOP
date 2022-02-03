@@ -30,6 +30,10 @@ namespace OOP_lesson2
             };
             bankAccount1.Equals(bankAccount2);
             bankAccount1.Equals(bankAccount3);
+            bankAccount1.GetHashCode();
+            bankAccount2.GetHashCode();
+            bankAccount3.GetHashCode();
+            Console.WriteLine(bankAccount1.ToString());
         }
     }
 }
