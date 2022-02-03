@@ -23,15 +23,15 @@ namespace OOP_lesson2
         /// <summary>
         /// Номер счета
         /// </summary>
-        private long _AccountNumber;
+        public long AccountNumber { get; set; }
         /// <summary>
         /// Баланс
         /// </summary>
-        private double _Balance;
+        public double Balance { get; set; }
         /// <summary>
         /// Тип банковского счета (переменная)
         /// </summary>
-        private TypesOfBankAccount _TypeOfBankAccount;
+        public TypesOfBankAccount TypeOfBankAccount { get; set; }
         /// <summary>
         /// Генерирует номер банковского счета
         /// </summary>
@@ -41,44 +41,38 @@ namespace OOP_lesson2
             return _AccountNumberCount += 1;
         }
         public BankAccount() { }
-        public BankAccount(double Balance)
+        public BankAccount(double balance)
         {
-            _AccountNumber = GetAccountNumberPlusOne();
-            _Balance = Balance;
-            _TypeOfBankAccount = default;
+            AccountNumber = GetAccountNumberPlusOne();
+            Balance = balance;
+            TypeOfBankAccount = default;
         }
-        public BankAccount(TypesOfBankAccount TypeOfBankAccount)
+        public BankAccount(TypesOfBankAccount typeOfBankAccount)
         {
-            _AccountNumber = GetAccountNumberPlusOne();
-            _Balance = default;
-            _TypeOfBankAccount = TypeOfBankAccount;
+            AccountNumber = GetAccountNumberPlusOne();
+            Balance = default;
+            TypeOfBankAccount = TypeOfBankAccount;
         }
-        public BankAccount(double Balance, TypesOfBankAccount TypeOfBankAccount)
+        public BankAccount(double balance, TypesOfBankAccount typeOfBankAccount)
         {
-            _AccountNumber = GetAccountNumberPlusOne();
-            _Balance = Balance;
-            _TypeOfBankAccount = TypeOfBankAccount;
+            AccountNumber = GetAccountNumberPlusOne();
+            Balance = balance;
+            TypeOfBankAccount = typeOfBankAccount;
         }
-        public BankAccount(int AccountNumber, double Balance, TypesOfBankAccount TypeOfBankAccount)
+        public BankAccount(int accountNumber, double balance, TypesOfBankAccount typeOfBankAccount)
         {
-            _AccountNumber = AccountNumber;
-            _Balance = Balance;
-            _TypeOfBankAccount = TypeOfBankAccount;
+            AccountNumber = accountNumber;
+            Balance = balance;
+            TypeOfBankAccount = typeOfBankAccount;
         }
-
-        public double Balance { get => _Balance; set => _Balance = value; }
-        public TypesOfBankAccount TypeOfBankAccount { get => _TypeOfBankAccount; set => _TypeOfBankAccount = value; }
-        public long AccountNumber { get => _AccountNumber; set => _AccountNumber = value; } 
-
         public void DepositSum(double sum)
         {
-            _Balance += sum;
+            Balance += sum;
         }
-
         public void TakeOutSum(double sum)
         {
-            if (_Balance >= sum) _Balance -= sum;
-            throw new ArgumentOutOfRangeException(nameof(_Balance), _Balance, "Нельзя снять сумму, которая больше, чем средств на счете.");
+            if (Balance >= sum) Balance -= sum;
+            throw new ArgumentOutOfRangeException(nameof(Balance), Balance, "Нельзя снять сумму, которая больше, чем средств на счете.");
         }
         /// <summary>
         /// Перевод денег с одного счета на другой
@@ -99,5 +93,6 @@ namespace OOP_lesson2
             return otherBankAccount.AccountNumber == AccountNumber;
 
         }
+        public override string ToString() => "";
     }
 }
