@@ -20,7 +20,7 @@ namespace OOP_lesson2
             {
                 AccountNumber = 1,
                 TypeOfBankAccount = TypesOfBankAccount.Credit,
-                Balance = 60000
+                Balance = 40000
             };
             var bankAccount3 = new BankAccount
             {
@@ -34,6 +34,8 @@ namespace OOP_lesson2
             bankAccount2.GetHashCode();
             bankAccount3.GetHashCode();
             Console.WriteLine(bankAccount1.ToString());
+            var a = bankAccount2 == bankAccount1;
+            var b = bankAccount1 != bankAccount3;
         }
     }
 }

@@ -98,5 +98,13 @@ namespace OOP_lesson2
             return HashCode.Combine(AccountNumber, TypeOfBankAccount, Balance);
         }
         public override string ToString() => $"[{AccountNumber}] {TypeOfBankAccount} - {Balance:0.0#}";
+        public static bool operator ==(BankAccount bankAccount1, BankAccount bankAccount2)
+        {
+            return (bankAccount1.AccountNumber == bankAccount2.AccountNumber && bankAccount1.Balance == bankAccount2.Balance && bankAccount1.TypeOfBankAccount == bankAccount2.TypeOfBankAccount);           
+        }
+        public static bool operator !=(BankAccount bankAccount1, BankAccount bankAccount2)
+        {
+            return !(bankAccount1.AccountNumber == bankAccount2.AccountNumber && bankAccount1.Balance == bankAccount2.Balance && bankAccount1.TypeOfBankAccount == bankAccount2.TypeOfBankAccount);
+        }
     }
 }
