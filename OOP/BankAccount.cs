@@ -20,7 +20,7 @@ namespace OOP_lesson2
         /// <summary>
         /// Номер счета (счетчик)
         /// </summary>
-        static private long _AccountNumberCount;
+        private static long _AccountNumberCount;
         /// <summary>
         /// Номер счета
         /// </summary>
@@ -64,7 +64,6 @@ namespace OOP_lesson2
         public long AccountNumber
         {
             get { return _AccountNumber; }
-            set { }
         }
         //[XmlAttribute("Balance")]
         public double Balance { get => _Balance; set { } }
@@ -80,6 +79,16 @@ namespace OOP_lesson2
         {
             if (_Balance >= sum) _Balance -= sum;
             throw new ArgumentOutOfRangeException(nameof(_Balance), _Balance, "Нельзя снять сумму, которая больше, чем средств на счете.");
+        }
+        /// <summary>
+        /// Перевод денег с одного счета на другой
+        /// </summary>
+        /// <param name="bankAccountA"></param>
+        /// <param name="bankAccountB"></param>
+        public void MoneyTransfer(BankAccount bankAccountA, BankAccount bankAccountB )
+        {
+            bankAccountB.Balance += bankAccountA.Balance;
+            bankAccountA.Balance = 0;
         }
         //Методы для заполнения и чтения (задание 1)
         //public long GetAccountNumber()
