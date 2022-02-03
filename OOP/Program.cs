@@ -43,15 +43,14 @@ namespace OOP_lesson2
             }
             else
             {
-                Console.WriteLine("Введенное значение не является числом.");
                 return false;
             }
         }
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Введите строку");
-            Console.WriteLine(WorkWithString.ReverseString(Console.ReadLine()));
+            //Console.WriteLine("Введите строку");
+            //Console.WriteLine(WorkWithString.ReverseString(Console.ReadLine()));
 
             //Задание 1
             //BankAccount bankAccount = new BankAccount();

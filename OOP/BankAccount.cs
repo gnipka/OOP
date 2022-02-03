@@ -11,7 +11,6 @@ namespace OOP_lesson2
     /// Тип банковского счета (перечислимый тип)
     /// </summary>
     public enum TypesOfBankAccount { Debit, Credit };
-    [Serializable]
     /// <summary>
     /// счет в банке
     /// </summary>
@@ -60,15 +59,10 @@ namespace OOP_lesson2
             _Balance = Balance;
             _TypeOfBankAccount = TypeOfBankAccount;
         }
-        //[XmlElement("AccountNumber")]
-        public long AccountNumber
-        {
-            get { return _AccountNumber; }
-        }
-        //[XmlAttribute("Balance")]
-        public double Balance { get => _Balance; set { } }
-        //[XmlAttribute("TypeOfBankAccount")]
-        public TypesOfBankAccount TypeOfBankAccount { get => _TypeOfBankAccount; set { } }
+
+        public double Balance { get => _Balance; set => _Balance = value; }
+        public TypesOfBankAccount TypeOfBankAccount { get => _TypeOfBankAccount; set => _TypeOfBankAccount = value; }
+        public long AccountNumber { get => _AccountNumber; set => _AccountNumber = value; } 
 
         public void DepositSum(double sum)
         {
@@ -89,6 +83,15 @@ namespace OOP_lesson2
         {
             bankAccountB.Balance += bankAccountA.Balance;
             bankAccountA.Balance = 0;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is null) return false;
+            if (GetType() != obj.GetType()) return false;
+            var otherBankAccount = (BankAccount)obj;
+            return otherBankAccount.AccountNumber == AccountNumber;
+
         }
         //Методы для заполнения и чтения (задание 1)
         //public long GetAccountNumber()
