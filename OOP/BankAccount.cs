@@ -20,7 +20,7 @@ namespace OOP_lesson2
         /// <summary>
         /// Номер счета (счетчик)
         /// </summary>
-        static private long _AccountNumberCount;
+        private static long _AccountNumberCount;
         /// <summary>
         /// Номер счета
         /// </summary>
@@ -64,7 +64,6 @@ namespace OOP_lesson2
         public long AccountNumber
         {
             get { return _AccountNumber; }
-            set { }
         }
         //[XmlAttribute("Balance")]
         public double Balance { get => _Balance; set { } }
