@@ -27,30 +27,21 @@ namespace Intro_OOP_lesson6
     }
     public enum Color { White, Black, Red, Blue, Yellow, Green, Orange};
     public enum Status { Visible, Invisible};
-    class Figure
+    public class Figure
     {
         public Color Color { get; set; }
         public Status Status { get; set; }
-        public double X { get; set; }
-        public double Y { get; set; }
-        private Vector _Vector { get; set; }
-
-        public Figure (Color color, Status status, double x, double y)
-        {
-            Color = color;
-            Status = status;
-            _Vector = new Vector(x, y);
-        }
+        protected Vector _Vector { get; set; }
 
         public void AddCoordinate(double x, double y)
         {
             _Vector = new Vector(x, y);
         }
-        public void HorizontalMovement(int a)
+        public void HorizontalMovement(double a)
         {
             _Vector = _Vector.HorizontalMovement(a);
         }
-        public void VerticalMovement(int a)
+        public void VerticalMovement(double a)
         {
             _Vector = _Vector.VerticalMovement(a);
         }
@@ -62,6 +53,6 @@ namespace Intro_OOP_lesson6
         {
             Status = status;
         }
-        public override string ToString() => $"Color - {Color} Coordinate - {[X, Y]} Status - {Status}";
+        public override string ToString() => $"Color - {Color} Coordinate - [{_Vector.X},{_Vector.Y}] Status - {Status}"; 
     }
 }
