@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 
 namespace OOP_lesson2
 {
-    [Serializable]
     public class ListBankAccount
     {
-        [XmlArray("BankAccounts"), XmlArrayItem("BankAccount")]
-        public List<BankAccount> BankAccounts { get; set; }
+        public HashSet<BankAccount> BankAccounts { get; set; }
         public ListBankAccount() { }
     }
 }

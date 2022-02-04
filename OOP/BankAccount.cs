@@ -11,7 +11,6 @@ namespace OOP_lesson2
     /// Тип банковского счета (перечислимый тип)
     /// </summary>
     public enum TypesOfBankAccount { Debit, Credit };
-    [Serializable]
     /// <summary>
     /// счет в банке
     /// </summary>
@@ -24,15 +23,15 @@ namespace OOP_lesson2
         /// <summary>
         /// Номер счета
         /// </summary>
-        private long _AccountNumber;
+        public long AccountNumber { get; set; }
         /// <summary>
         /// Баланс
         /// </summary>
-        private double _Balance;
+        public double Balance { get; set; }
         /// <summary>
         /// Тип банковского счета (переменная)
         /// </summary>
-        private TypesOfBankAccount _TypeOfBankAccount;
+        public TypesOfBankAccount TypeOfBankAccount { get; set; }
         /// <summary>
         /// Генерирует номер банковского счета
         /// </summary>
@@ -42,43 +41,38 @@ namespace OOP_lesson2
             return _AccountNumberCount += 1;
         }
         public BankAccount() { }
-        public BankAccount(double Balance)
+        public BankAccount(double balance)
         {
-            _AccountNumber = GetAccountNumberPlusOne();
-            _Balance = Balance;
-            _TypeOfBankAccount = default;
+            AccountNumber = GetAccountNumberPlusOne();
+            Balance = balance;
+            TypeOfBankAccount = default;
         }
-        public BankAccount(TypesOfBankAccount TypeOfBankAccount)
+        public BankAccount(TypesOfBankAccount typeOfBankAccount)
         {
-            _AccountNumber = GetAccountNumberPlusOne();
-            _Balance = default;
-            _TypeOfBankAccount = TypeOfBankAccount;
+            AccountNumber = GetAccountNumberPlusOne();
+            Balance = default;
+            TypeOfBankAccount = TypeOfBankAccount;
         }
-        public BankAccount(double Balance, TypesOfBankAccount TypeOfBankAccount)
+        public BankAccount(double balance, TypesOfBankAccount typeOfBankAccount)
         {
-            _AccountNumber = GetAccountNumberPlusOne();
-            _Balance = Balance;
-            _TypeOfBankAccount = TypeOfBankAccount;
+            AccountNumber = GetAccountNumberPlusOne();
+            Balance = balance;
+            TypeOfBankAccount = typeOfBankAccount;
         }
-        //[XmlElement("AccountNumber")]
-        public long AccountNumber
+        public BankAccount(int accountNumber, double balance, TypesOfBankAccount typeOfBankAccount)
         {
-            get { return _AccountNumber; }
+            AccountNumber = accountNumber;
+            Balance = balance;
+            TypeOfBankAccount = typeOfBankAccount;
         }
-        //[XmlAttribute("Balance")]
-        public double Balance { get => _Balance; set { } }
-        //[XmlAttribute("TypeOfBankAccount")]
-        public TypesOfBankAccount TypeOfBankAccount { get => _TypeOfBankAccount; set { } }
-
         public void DepositSum(double sum)
         {
-            _Balance += sum;
+            Balance += sum;
         }
-
         public void TakeOutSum(double sum)
         {
-            if (_Balance >= sum) _Balance -= sum;
-            throw new ArgumentOutOfRangeException(nameof(_Balance), _Balance, "Нельзя снять сумму, которая больше, чем средств на счете.");
+            if (Balance >= sum) Balance -= sum;
+            throw new ArgumentOutOfRangeException(nameof(Balance), Balance, "Нельзя снять сумму, которая больше, чем средств на счете.");
         }
         /// <summary>
         /// Перевод денег с одного счета на другой
@@ -90,30 +84,27 @@ namespace OOP_lesson2
             bankAccountB.Balance += bankAccountA.Balance;
             bankAccountA.Balance = 0;
         }
-        //Методы для заполнения и чтения (задание 1)
-        //public long GetAccountNumber()
-        //{
-        //   return _AccountNumber;
-        //}
-        //public void SetAccountNumber(long value)
-        //{
-        //    _AccountNumber = value;
-        //}
-        //public double GetBalance()
-        //{
-        //    return _Balance;
-        //}
-        //public void SetBalance(double value)
-        //{
-        //    _Balance = value;
-        //}
-        //public TypesOfBankAccount GetTypeOfBankAccount()
-        //{
-        //    return _TypeOfBankAccount;
-        //}
-        //public void SetTypeOfBankAccount(TypesOfBankAccount value)
-        //{
-        //    _TypeOfBankAccount = value;
-        //}
+
+        public override bool Equals(object obj)
+        {
+            if (obj is null) return false;
+            if (GetType() != obj.GetType()) return false;
+            var otherBankAccount = (BankAccount)obj;
+            return otherBankAccount.AccountNumber == AccountNumber;
+
+        }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(AccountNumber, TypeOfBankAccount, Balance);
+        }
+        public override string ToString() => $"[{AccountNumber}] {TypeOfBankAccount} - {Balance:0.0#}";
+        public static bool operator ==(BankAccount bankAccount1, BankAccount bankAccount2)
+        {
+            return (bankAccount1.AccountNumber == bankAccount2.AccountNumber && bankAccount1.Balance == bankAccount2.Balance && bankAccount1.TypeOfBankAccount == bankAccount2.TypeOfBankAccount);           
+        }
+        public static bool operator !=(BankAccount bankAccount1, BankAccount bankAccount2)
+        {
+            return !(bankAccount1.AccountNumber == bankAccount2.AccountNumber && bankAccount1.Balance == bankAccount2.Balance && bankAccount1.TypeOfBankAccount == bankAccount2.TypeOfBankAccount);
+        }
     }
 }
